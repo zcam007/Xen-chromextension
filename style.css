@@ -1,0 +1,52 @@
+.heading
+{
+    font-family: 'Pacifico', cursive;
+    color:white;
+}
+.name
+{
+    font-family: 'Pacifico', cursive;
+    color:white;
+}
+.time
+{
+    display: table;
+  margin-right: auto;
+  margin-left: auto;
+  font-family: 'Bitter', serif;
+  letter-spacing:0;
+color:white;
+  font-size: 120pt;
+}
+.format
+{
+    background: none;
+    font-family: 'Pacifico', cursive;
+    color:white;
+    border:none;
+    min-width: 1.5em;
+}
+.format:focus
+{
+    outline: none;
+    font-size: 1em;
+}
+.footer {
+    position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: white;
+   text-align: center;
+   font-family: 'Roboto', sans-serif;
+font-size: large;
+  }
+
+  .timeSubs
+  {
+    font-family: 'Bitter', serif;
+    color:white;
+  font-size: 20pt;
+
+  }
+  
