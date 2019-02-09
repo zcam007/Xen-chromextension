@@ -40,22 +40,24 @@ $.ajax({
 });
 function setName()
 {
-  var namefromHTML=document.getElementById('name');
-  if(namefromHTML="")
+  //eraseCookie("name");
+  var namefromHTML=document.getElementById('name'); 
+  if(namefromHTML.innerHTML=="Enter your name.." && (getCookie("name")==null))
   {
-
-    console.log("name enter your name");
-    updateVal(namefromHTML,"Enter youra name");
+        
+    console.log("inside if enter your name");
+   // updateVal(namefromHTML,'<p>Enter your name..</p>');
   }
   else{
     console.log("name cookie");
     var nameFromCookie=getCookie("name")
-    namefromHTML.innerHTML="hello";
+    //namefromHTML.innerHTML="hello";
     $('#name').html(nameFromCookie);
+    $('#name').append(".");
+    
         
     console.log(nameFromCookie);
   }
-  
 }
 function updateVal(currentEle, value) {
   $(document).off('click');
@@ -167,32 +169,47 @@ $(function() {
 function wallpaperChange()
 {
   //eraseCookie("wallpaper");
-  if(getCookie("wallpaper")==null)
-  {
     $.ajax({
       type: "GET",
-      url: "https://pixabay.com/api/?key=11539462-ceb223426b7e2e65b3aaf606f&q=landscape+beautiful&orientation=horizontal&image_type=photo&pretty=true&min_width=1280",
+      url: "https://pixabay.com/api/?key=11539462-ceb223426b7e2e65b3aaf606f&q=landscape+beautiful&orientation=horizontal&image_type=photo&pretty=true&min_width=1280&min_height=720",
       processData: false,
       success: function(msg) {
         console.log("API Called");
-        $("#results").append("The result =" + msg.hits[random()].largeImageURL);
+        //$("#results").append("The result =" + msg.hits[random()].largeImageURL);
         console.log(getCookie("wallpaper"));
         setCookie("wallpaper",msg.hits[random()].largeImageURL,1);
         $('#body').css("background-image", "url("+getCookie("wallpaper")+")"); 
-       
+       // $('#body').css("background", "url("+getCookie("wallpaper")+") center no-repeat cover;"); 
+       $('#body').css("background-size", "cover"); 
+      
       }
     });
 
-  }
-  else{
-    $('#body').css("background-image", "url("+getCookie("wallpaper")+")"); 
-  }
+  
 }
 
 $(function() {
+  if(getCookie("wallpaper")==null)
+  {
   wallpaperChange();
+}
+else{
+  $('#body').css("background-image", "url("+getCookie("wallpaper")+")"); 
+  //$('#body').css("background", "url("+getCookie("wallpaper")+") center no-repeat cover;"); 
+  $('#body').css("background-size", "cover"); 
+  $('#body').css("background-repeat", "no-repeat"); 
+  $('#body').css("height", "100%"); 
+      
+        
+}
   });
-
+  
+  $(function() {
+  $("#wallpaperChangebtn").dblclick(function(){
+    wallpaperChange();
+   });
+  });
+  
 //quote
   $(function() {
     //eraseCookie("quote");
