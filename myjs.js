@@ -1,6 +1,5 @@
-
-var a = document.getElementById("results");
-if(a)
-  console.log("elemA exists");
-else
-  console.log("elemA does not exist");
+chrome.browserAction.onClicked.addListener(function(tab) {
+  chrome.tabs.create({'url': chrome.extension.getURL('f.html')}, function(tab) {
+    // Tab opened.
+  });
+});

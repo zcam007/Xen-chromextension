@@ -1,18 +1,16 @@
 {
     "manifest_version": 2,
-    "name": "Just Another Homepage",
-    "description": "Just a homepage",
-    "version": "1",
+    "name": "Xenapse",
+    "description": "Replace new tab page with a personal dashboard featuring time and inspiration.",
+    "version": "1.1.0",
     "author": "Chandu",
    "browser_action": {
-      //"default_icon": "tab-icon.png",
-      "default_title": "New Tab"
-     // "default_popup": "popup.html"
+      "default_title": "Xenapse"
     },
    "chrome_url_overrides" : {
      "newtab": "newtab.html"
    },
-    "permissions": ["activeTab"],
+    "permissions": ["activeTab","tabs"],
     "background": {
       "scripts": ["jquery-3.3.1.js","main.js"],
       "persistent": false
