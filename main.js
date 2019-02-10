@@ -1,3 +1,7 @@
+if(navigator.onLine) { // true|false
+	console.log("online");
+}
+
 function random()
 {
   return Math.floor(Math.random() * 20);
@@ -31,6 +35,12 @@ $.ajax({
   $("#name").dblclick(function (e) {
       if($(event.target).attr('class')!="thVal")
           {
+            var ele=document.getElementById('name');
+            var temp_value=ele.innerHTML; 
+            ele.innerHTML=""; 
+            ele.innerHTML=temp_value;
+            console.log(ele.innerHTML);
+          
               e.stopPropagation();
               var currentEle = $(this);
               var value = $(this).html();
@@ -61,7 +71,7 @@ function setName()
 }
 function updateVal(currentEle, value) {
   $(document).off('click');
-  $(currentEle).html('<input class="thVal format" onfocus="var temp_value=this.value; this.value=""; this.value=temp_value"  type="text" value="' + value + '" />');
+  $(currentEle).html('<input class="thVal format" type="text" value="' + value + '" />');
   $(".thVal").focus();
   $(".thVal").keyup(function (event) {
       if (event.keyCode == 13) {
@@ -168,29 +178,41 @@ $(function() {
 
 function wallpaperChange()
 {
-  //eraseCookie("wallpaper");
+  console.log("wallpaperchange func");
+  if(navigator.onLine) {
+    console.log("Online");
     $.ajax({
       type: "GET",
       url: "https://pixabay.com/api/?key=11539462-ceb223426b7e2e65b3aaf606f&q=landscape+beautiful&orientation=horizontal&image_type=photo&pretty=true&min_width=1280&min_height=720",
       processData: false,
       success: function(msg) {
         console.log("API Called");
-        //$("#results").append("The result =" + msg.hits[random()].largeImageURL);
+       // $("#results").append("The result =" + msg.hits[random()].largeImageURL);
         console.log(getCookie("wallpaper"));
-        setCookie("wallpaper",msg.hits[random()].largeImageURL,1);
+        setCookie("wallpaper",msg.hits[random()].largeImageURL,0.2);
         $('#body').css("background-image", "url("+getCookie("wallpaper")+")"); 
        // $('#body').css("background", "url("+getCookie("wallpaper")+") center no-repeat cover;"); 
        $('#body').css("background-size", "cover"); 
       
       }
     });
-
+  }
+  else{
+    console.log("offline");
+   
+    $('#body').css("background-image", 'url("offline.jpg")'); 
+       
+  }
   
 }
 
 $(function() {
+  //eraseCookie("wallpaper");
+  
+  console.log(getCookie("wallpaper"));
   if(getCookie("wallpaper")==null)
   {
+     console.log("wallpaper change func call");
   wallpaperChange();
 }
 else{
@@ -224,7 +246,7 @@ else{
           var obj = JSON.parse(msg);
           $("#quote").append(obj.slip.advice);
           console.log(obj.slip.advice);
-          setCookie("quote",obj.slip.advice,1);
+          setCookie("quote",obj.slip.advice,0.01);
          
         }
       });

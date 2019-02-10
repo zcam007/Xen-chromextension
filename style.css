@@ -17,6 +17,20 @@
   letter-spacing:0;
 color:white;
   font-size: 120pt;
+  padding-bottom: 0;
+  margin-bottom:-5%;
+}
+.focustxt
+{
+    display: table;
+ 
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    margin-right: auto;
+  margin-left: auto;
+  
+    font-size: xx-large;
+
 }
 .format
 {
@@ -30,6 +44,7 @@ color:white;
 {
     outline: none;
     font-size: 1em;
+    text-decoration-line: underline;
 }
 .footer {
     position: fixed;
@@ -75,7 +90,6 @@ html, body {
     max-height: 100%;
     margin: 0;
     padding: 0;
-    background-image: url('img/IMAG0360.jpg');
     background-size:100% 100%;
     background-repeat: no-repeat;
 }
