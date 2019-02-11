@@ -7,6 +7,17 @@
 {
     font-family: 'Pacifico', cursive;
     color:white;
+    outline: none;
+    background: none;
+  border:none;
+  font-size: 1em;
+    
+}
+.name:focus
+{
+    outline: none;
+    font-size: 1em;
+    text-decoration-line: underline;
 }
 .time
 {
@@ -27,10 +38,40 @@ color:white;
     color: white;
     font-family: 'Roboto', sans-serif;
     margin-right: auto;
-  margin-left: auto;
-  
+    margin-left: auto;
     font-size: xx-large;
 
+}
+
+.focusTxtBox
+{
+    display:table;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    margin-right: auto;
+    margin-left: auto;
+    outline: none;
+    background: none;
+  width:70%;
+  font-size: 30px;
+  height: 50px;
+  text-align: center;
+  
+  border: 0;
+  wwidth: calc(100% - 100px);
+  box-shadow: -6px 2px 0px -7px white, 4px 10px 0px -7px white;
+  -webkit-transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s;
+
+}
+
+.focusTxtBox:focus
+{
+    text-align: center;
+    outline: none;
+    font-size: 30px;
+    outline: none;
+  box-shadow: -6px 2px 0px -7px #ffeeee, 4px 10px 0px -7px #ffeeee;
 }
 .format
 {
@@ -78,6 +119,10 @@ font-size: large;
 .changeWall
 {
     font-size: x-small;
+}
+.changeWall:hover
+{
+    cursor: pointer;
 }
 html, body {
     height: 100%;
