@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Xenapse",
     "description": "Replace new tab page with a personal dashboard featuring time and inspiration.",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "author": "Chandu",
    "browser_action": {
       "default_title": "Xenapse"
