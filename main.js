@@ -1,3 +1,11 @@
+$(function() {
+  //$("#name").val()=getCookie("name");
+  setTodayFocus();
+  setName();
+    startTime();
+    setInterval(startTime, 1000);
+});
+
 if(navigator.onLine) { // true|false
 	console.log("online");
 }
@@ -32,27 +40,90 @@ $.ajax({
 
 
  $(function () {
-  $("#name").dblclick(function (e) {
+  $("#name").click(function (e) {
+    console.log("onclick");
       if($(event.target).attr('class')!="thVal")
           {
             var ele=document.getElementById('name');
-            var temp_value=ele.innerHTML; 
-            ele.innerHTML=""; 
-            ele.innerHTML=temp_value;
-            console.log(ele.innerHTML);
+           // var temp_value=ele.innerHTML; 
+            //ele.innerHTML=""; 
+            //ele.innerHTML=temp_value;
+            console.log(ele);
           
               e.stopPropagation();
               var currentEle = $(this);
               var value = $(this).html();
+             // console.log(currentEle);
               updateVal(currentEle, value);
       }
   });
 });
+
+
+$(function () {
+  $("#id_focusTxtBox").click(function (e) {
+    console.log("onclick");
+      if($(event.target).attr('class')!="thVal")
+          {
+            var ele=document.getElementById('id_focusTxtBox');
+           // var temp_value=ele.innerHTML; 
+            //ele.innerHTML=""; 
+            //ele.innerHTML=temp_value;
+            console.log(ele);
+          
+              e.stopPropagation();
+              var currentEle = $(this);
+              var value = $(this).html();
+             // console.log(currentEle);
+              updateVal(currentEle, value);
+      }
+  });
+});
+
+
+
+
+function setName()
+{
+  //eraseCookie("name");
+  console.log("Get cookie name "+getCookie("name"));
+  var valuefromHTML=document.getElementById('name').value;
+  console.log("setname"+valuefromHTML); 
+  if(valuefromHTML=="" && (getCookie("name")==null))
+  {
+    console.log("setnameinsideif");
+  document.getElementById('name').value="Enter your name.."
+  }
+  else
+  {
+    //$("#name").val()=getCookie("name");
+    document.getElementById('name').value=getCookie("name");
+    //console.log("elses"+getCookie("name"));
+  }
+  
+}
+
+function setTodayFocus()
+{
+ // eraseCookie("focus");
+  var valuefromHTML=document.getElementById('id_focusTxtBox').value;
+  console.log("setfocustoday cookie == "+getCookie("focus")); 
+  
+  if(valuefromHTML=="" && (getCookie("focus")==null))
+  {
+  document.getElementById('id_focusTxtBox').value=""
+  }
+  else
+  {
+    document.getElementById('id_focusTxtBox').value=getCookie("focus");
+  }
+}
+/*
 function setName()
 {
   //eraseCookie("name");
   var namefromHTML=document.getElementById('name'); 
-  if(namefromHTML.innerHTML=="Enter your name.." && (getCookie("name")==null))
+  if(namefromHTML.value=="Enter your name.." && (getCookie("name")==null))
   {
         
     console.log("inside if enter your name");
@@ -68,15 +139,22 @@ function setName()
         
     console.log(nameFromCookie);
   }
-}
+}*/
+
+
+
 function updateVal(currentEle, value) {
   $(document).off('click');
   $(currentEle).html('<input class="thVal format" type="text" value="' + value + '" />');
+  console.log($(currentEle));
+  $(document).off('#name');
   $(".thVal").focus();
   $(".thVal").keyup(function (event) {
       if (event.keyCode == 13) {
-        var c=$(".thVal").val();
-          $(currentEle).html($(".thVal").val()+".");
+        var c=$("#name").val();
+         // $(currentEle).val($(".thVal").val()+".");
+         //$(currentEle).val($("#name").val()+".");
+           
           setCookie("name",c,1000);
           $(document).off('click');
            
@@ -85,16 +163,32 @@ function updateVal(currentEle, value) {
   });
 
   $(document).click(function () {
-
+    console.log($("#name"));
           if($(event.target).attr('class')!="thVal")
           {
-            var c=$(".thVal").val();
-            console.log("hconsol"+c);
-              $(currentEle).html($(".thVal").val()+".");
+            var c=$("#name").val();
+            if(c==getCookie("name"))
+            {
+              c=$("#name").val();
+            }
+            else
+            {
+              document.getElementById('name').value+=".";
+              c=document.getElementById('name').value;
+              
+            }
+            console.log("console"+c);
+            //  $(currentEle).html($(".thVal").val()+".");
+           // $(currentEle).val($("#name").val()+".");
               setCookie("name",c,1000);
               $(document).off('click');
             }
-
+            var focus=document.getElementById('id_focusTxtBox').value;
+            console.log("focus at last "+focus);
+            setCookieMidnightDelete("focus",focus);
+          // setCookie("focus",focus,1);
+           
+            
   });
 
 }
@@ -170,11 +264,7 @@ function getSalutations(hours)
   }
 }
 
-$(function() {
-  setName();
-    startTime();
-    setInterval(startTime, 1000);
-});
+
 
 function wallpaperChange()
 {
@@ -317,4 +407,19 @@ function getCookie(name) {
 }
 function eraseCookie(name) {   
   document.cookie = name+'=; Max-Age=-99999999;';  
+}
+
+function setCookieMidnightDelete(name, value)
+{
+  console.log("called name:"+name+"  value:"+value);
+  
+  var now = new Date();
+  var expire = new Date();
+  expire.setFullYear(now.getFullYear());
+  expire.setMonth(now.getMonth());
+  expire.setDate(now.getDate()+2);
+  //console.log(now.getDate()+1);
+  expire.setHours(0);
+  expire.setMinutes(0);
+  document.cookie = name+"="+(value || "")+"; expires=" + expire.toString() +"; path=/";
 }
