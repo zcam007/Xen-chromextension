@@ -12,7 +12,7 @@ if(navigator.onLine) { // true|false
 
 function random()
 {
-  return Math.floor(Math.random() * 20);
+  return Math.floor(Math.random() * 99);
 }
 /*
 $.ajax({
@@ -273,7 +273,7 @@ function wallpaperChange()
     console.log("Online");
     $.ajax({
       type: "GET",
-      url: "https://pixabay.com/api/?key=11539462-ceb223426b7e2e65b3aaf606f&q=landscape+beautiful&orientation=horizontal&image_type=photo&pretty=true&min_width=1280&min_height=720",
+      url: "https://pixabay.com/api/?key=11539462-ceb223426b7e2e65b3aaf606f&q=landscape&orientation=horizontal&image_type=photo&pretty=true&min_width=1280&min_height=720&per_page=100",
       processData: false,
       success: function(msg) {
         console.log("API Called");
@@ -334,7 +334,7 @@ else{
         success: function(msg) {
           console.log("API Called");
           var obj = JSON.parse(msg);
-          $("#quote").append(obj.slip.advice);
+          $("#quote").html(obj.slip.advice);
           console.log(obj.slip.advice);
           setCookie("quote",obj.slip.advice,0.01);
          
