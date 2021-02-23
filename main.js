@@ -86,12 +86,12 @@ $(function () {
 function setName()
 {
   //eraseCookie("name");
-  console.log("Get cookie name "+getCookie("name"));
+  // console.log("Get cookie name "+getCookie("name"));
   var valuefromHTML=document.getElementById('name').value;
-  console.log("setname"+valuefromHTML); 
+  // console.log("setname"+valuefromHTML); 
   if(valuefromHTML=="" && (getCookie("name")==null))
   {
-    console.log("setnameinsideif");
+    // console.log("setnameinsideif");
   document.getElementById('name').value="Enter your name.."
   }
   else
@@ -107,7 +107,7 @@ function setTodayFocus()
 {
  // eraseCookie("focus");
   var valuefromHTML=document.getElementById('id_focusTxtBox').value;
-  console.log("setfocustoday cookie == "+getCookie("focus")); 
+  // console.log("setfocustoday cookie == "+getCookie("focus")); 
   
   if(valuefromHTML=="" && (getCookie("focus")==null))
   {
@@ -245,15 +245,15 @@ function getSalutations(hours)
 {
   if(hours>=04 && hours<12)
   {
-    console.log("Good Morning");
+    // console.log("Good Morning");
     document.getElementById("salu").innerHTML="Good Morning,";
   }
   else if(hours>=12 && hours<15){
-    console.log("Good Afternoon");
+    // console.log("Good Afternoon");
     document.getElementById("salu").innerHTML="Good Afternoon,";
   }
   else if(hours>=15 && hours<22){
-    console.log("Good Evening");
+    // console.log("Good Evening");
     document.getElementById("salu").innerHTML="Good Evening,";
   
   }
@@ -276,7 +276,7 @@ function wallpaperChange()
       url: "https://pixabay.com/api/?key=11539462-ceb223426b7e2e65b3aaf606f&q=landscape&orientation=horizontal&image_type=photo&pretty=true&min_width=1280&min_height=720&per_page=100",
       processData: false,
       success: function(msg) {
-        console.log("API Called");
+        // console.log("API Called");
        // $("#results").append("The result =" + msg.hits[random()].largeImageURL);
         console.log(getCookie("wallpaper"));
         setCookie("wallpaper",msg.hits[random()].largeImageURL,0.2);
